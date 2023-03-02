@@ -1,12 +1,12 @@
 <template>
-  <HelloWorld msg="Electron + Vite + Vue" />
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+
+
+localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.tencentcs.com/release/")
 
 </script>
 
-<style>
-
-</style>
+<style></style>
