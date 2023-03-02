@@ -15,7 +15,7 @@
     --el-font-size-base: 14px;
     --el-font-size-small: 13px;
     --el-font-size-extra-small: 12px;
-    --el-font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;
+    --el-font-family: Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;
     --el-font-weight-primary: 500;
     --el-font-line-height-primary: 24px;
     --el-index-normal: 1;
@@ -127,6 +127,10 @@
 
 .el-header{
     padding: 0px;
+}
+
+.el-input__inner{
+    color:rgba(255, 255, 255, 0.9)
 }
 
 .el-input__wrapper{

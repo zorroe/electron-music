@@ -1,8 +1,8 @@
 <template>
     <div class="header-bar">
         <div class="w-1/6 flex items-center justify-center">
-            <icon-park :icon="SoundWave"></icon-park>
-            <div>
+            <icon-park :icon="SoundWave" fill="#fbd9d9"></icon-park>
+            <div class="text-white text-opacity-80 cursor-default">
                 网易云音乐
             </div>
         </div>
@@ -13,13 +13,15 @@
             <div v-if="!isLogin" @click="routeTo('/login')">
                 未登录
             </div>
-            <img v-else :src="avatar" class="w-8 rounded-full">
+            <img v-else :src="avatar" class="w-8 rounded-full mx-2 cursor-pointer">
+            <!-- 用户名 -->
+            <div class="text-white text-sm text-opacity-80 cursor-pointer hover:text-opacity-90">{{ userName }}</div>
             <icon-park :icon="Setting" :size="18" fill="#fbd9d9"></icon-park>
         </div>
         <div class="w-1/6 flex justify-end items-center">
-            <icon-park :icon="Minus" :size="18" fill="#fbd9d9"></icon-park>
-            <icon-park :icon="RectangleOne" :size="18" fill="#fbd9d9"></icon-park>
-            <icon-park :icon="Close" :size="18" fill="#fbd9d9"></icon-park>
+            <icon-park :icon="Minus" :size="18" fill="#fbd9d9" class="cursor-pointer"></icon-park>
+            <icon-park :icon="RectangleOne" :size="18" fill="#fbd9d9" class="cursor-pointer"></icon-park>
+            <icon-park :icon="Close" :size="18" fill="#fbd9d9" class="cursor-pointer text-opacity-80 hover:text-opacity-100"></icon-park>
         </div>
     </div>
 </template>
@@ -38,6 +40,7 @@ const searchKey = ref('');
 const isLogin = computed(() => userInfoStore.isLogin);
 const avatar = computed(() => userInfoStore.getUserInfo.avatarUrl);
 const defaultSearchKey = ref<string>("")
+const userName = computed(() => userInfoStore.getUserInfo.nickname);
 
 const getDefaultSearchKey = async() => {
     const res = await http.get("/search/default") as any;
