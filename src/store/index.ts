@@ -1,11 +1,13 @@
+import { userProfile } from "@/api/types";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+
 
 export const useUserInfoStore = defineStore("userInfo", () => {
-  const userInfo = ref({});
+  const userInfo = ref({} as userProfile);
   const isLogin = ref(false);
 
-  const setUserInfo = (info: any) => {
+  const setUserInfo = (info: userProfile) => {
     userInfo.value = info;
   };
 
@@ -13,10 +15,16 @@ export const useUserInfoStore = defineStore("userInfo", () => {
     isLogin.value = login;
   };
 
+  const getUserInfo = computed(() => {
+    return userInfo.value;
+  });
+
   return {
     userInfo,
     isLogin,
+    getUserInfo,
     setUserInfo,
     setIsLogin,
   };
 });
+

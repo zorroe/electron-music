@@ -72,10 +72,14 @@ export default defineConfig(({ command }) => {
         nodeIntegration: true,
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({
+          importStyle: false  // 不导入样式
+        })],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({
+          importStyle: false  // 不导入样式
+        })],
       }),
     ],
     resolve: {

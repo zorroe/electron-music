@@ -1,26 +1,20 @@
 <template>
   <div>
     登陆界面
-    <el-button @click="handleToHome">首页</el-button>
+    <el-button @click="routeTo('/')">首页</el-button>
   </div>
 
   <img id="qrLogin" :src="imgSrc">
 </template>
 
 <script setup lang="ts">
+import { checkLoginStatus, routeTo } from '@/api';
 import router from '@/router';
 import http from '@/utils/http';
 import { onMounted, onUnmounted, ref } from 'vue';
-import { useUserInfoStore } from '@/store';
-
-const userInfoStore = useUserInfoStore()
 
 const imgSrc = ref<string>("")
 let timer: string | number | NodeJS.Timer | undefined
-
-const handleToHome = () => {
-  router.push("/")
-}
 
 async function checkStatus(key: string) {
   const res = http.get(`/login/qr/check?key=${key}`) as any
@@ -44,6 +38,7 @@ async function login() {
     if (statusRes.code === 803) {
       clearInterval(timer)
       localStorage.setItem("cookie", statusRes.cookie)
+      checkLoginStatus()
       router.push('/')
     }
   }, 3000)
