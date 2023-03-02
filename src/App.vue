@@ -5,7 +5,9 @@
         <Header></Header>
       </el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px">
+          <Aside></Aside>
+        </el-aside>
         <el-container>
           <el-main>
             <router-view></router-view>
@@ -21,9 +23,21 @@
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue';
+import Aside from '@/components/Aside.vue';
 
 localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.tencentcs.com/release/")
 
 </script>
 
-<style></style>
+<style>
+
+.el-aside {
+  background-color: #f2f5f6;
+  height: 600px;
+}
+
+.el-footer{
+  background-color: #def7ff;
+  height: 50px;
+}
+</style>
