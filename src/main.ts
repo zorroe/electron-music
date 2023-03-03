@@ -4,16 +4,14 @@ import "./style.css";
 import App from "./App.vue";
 import "@/samples/node-api";
 import router from "@/router/index";
-import { createPinia } from "pinia";
+import pinia from "./store/store";
 import IconPark from '@/components/IconPark.vue'
 
-const pinia = createPinia();
 const app = createApp(App);
 
+app.use(router)
+app.use(pinia)
 app.component('icon-park', IconPark)
-  .use(router)
-  .use(pinia)
-  .mount("#app")
-  .$nextTick(() => {
+app.mount("#app").$nextTick(() => {
     postMessage({ payload: "removeLoading" }, "*");
   });
