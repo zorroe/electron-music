@@ -30,11 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import {Time,Like,Cloudy,MusicList} from '@icon-park/vue-next';
+import { MusicList} from '@icon-park/vue-next';
 import { watch } from 'vue';
 import { useUserInfoStore } from '@/store';
 import pinia from '@/store/store';
-import {myPlayLists,collectPlayLists,assignPlayList} from '@/api/useAside';
+import {myPlayLists,collectPlayLists,assignPlayList,asideItems,myMusicItems} from '@/api/useAside';
 const userInfoStore = useUserInfoStore(pinia);
 
 // 监测pinia中的登陆状态，如果登录则获取歌单
@@ -43,43 +43,6 @@ watch(() => userInfoStore.isLogin, (isLogin) => {
         assignPlayList()
     }
 })
-
-const asideItems = [
-    {
-        name: '发现音乐',
-        to: '/discover',
-    },
-    {
-        name: '播客',
-        to: '/podcast',
-    },
-    {
-        name: '视频',
-        to: '/video',
-    },
-    {
-        name: '直播',
-        to: '/live',
-    }
-];
-
-const myMusicItems = [
-    {
-        name: '我喜欢的音乐',
-        to: '/myMusic/like',
-        icon: Like,
-    },
-    {
-        name: '最近播放',
-        to: '/myMusic/recent',
-        icon: Time,
-    },
-    {
-        name: '我的音乐云盘',
-        to: '/myMusic/cloud',
-        icon: Cloudy,
-    }
-]
 
 </script>
 

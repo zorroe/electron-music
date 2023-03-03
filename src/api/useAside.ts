@@ -3,6 +3,7 @@ import { useUserInfoStore } from '@/store';
 import pinia from '@/store/store';
 import http from '@/utils/http';
 import { PlayList } from '@/api/types';
+import { Cloudy, Like, Time } from '@icon-park/vue-next';
 
 const userInfoStore = useUserInfoStore(pinia);
 // 所有歌单
@@ -39,7 +40,46 @@ const assignPlayList = async () => {
     likePlayList.value = myPlayLists[0]
 }
 
+const asideItems = [
+    {
+        name: '发现音乐',
+        to: '/discover',
+    },
+    {
+        name: '播客',
+        to: '/podcast',
+    },
+    {
+        name: '视频',
+        to: '/video',
+    },
+    {
+        name: '直播',
+        to: '/live',
+    }
+];
+
+const myMusicItems = [
+    {
+        name: '我喜欢的音乐',
+        to: '/myMusic/like',
+        icon: Like,
+    },
+    {
+        name: '最近播放',
+        to: '/myMusic/recent',
+        icon: Time,
+    },
+    {
+        name: '我的音乐云盘',
+        to: '/myMusic/cloud',
+        icon: Cloudy,
+    }
+]
+
 export{
+    asideItems,
+    myMusicItems,
     myPlayLists,
     collectPlayLists,
     assignPlayList
