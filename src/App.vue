@@ -32,7 +32,8 @@ localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.t
 <style>
 
 .el-aside {
-  background-color: #f2f5f6;
+  /* background-color: #f2f5f6; */
+  border-right: 1px solid #e0e0e0;
   height: 600px;
 }
 
