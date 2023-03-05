@@ -40,6 +40,13 @@ const assignPlayList = async () => {
     likePlayList.value = myPlayLists[0]
 }
 
+// 清空歌单
+const clearPlayList = () => {
+    playLists.splice(0, playLists.length)
+    myPlayLists.splice(0, myPlayLists.length)
+    collectPlayLists.splice(0, collectPlayLists.length)
+}
+
 const asideItems = [
     {
         name: '发现音乐',
@@ -82,5 +89,6 @@ export{
     myMusicItems,
     myPlayLists,
     collectPlayLists,
-    assignPlayList
+    assignPlayList,
+    clearPlayList,
 }

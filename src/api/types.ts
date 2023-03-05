@@ -130,7 +130,119 @@ interface userProfile {
   }
 
 
+  interface UserDetail {
+    level: number;
+    listenSongs: number;
+    userPoint: UserPoint;
+    mobileSign: boolean;
+    pcSign: boolean;
+    profile: Profile;
+    peopleCanSeeMyPlayRecord: boolean;
+    bindings: Binding[];
+    adValid: boolean;
+    code: number;
+    newUser: boolean;
+    recallUser: boolean;
+    createTime: number;
+    createDays: number;
+    profileVillageInfo: ProfileVillageInfo;
+  }
+  
+  interface ProfileVillageInfo {
+    title: string;
+    imageUrl: string;
+    targetUrl: string;
+  }
+  
+  interface Binding {
+    url: string;
+    expired: boolean;
+    userId: number;
+    expiresIn: number;
+    refreshTime: number;
+    bindingTime: number;
+    tokenJsonStr?: any;
+    id: number;
+    type: number;
+  }
+  
+  interface Profile {
+    privacyItemUnlimit: PrivacyItemUnlimit;
+    avatarDetail?: any;
+    avatarImgIdStr: string;
+    backgroundImgIdStr: string;
+    description: string;
+    userId: number;
+    accountStatus: number;
+    vipType: number;
+    userType: number;
+    createTime: number;
+    avatarUrl: string;
+    mutual: boolean;
+    followed: boolean;
+    remarkName?: any;
+    authStatus: number;
+    detailDescription: string;
+    experts: Experts;
+    expertTags?: any;
+    djStatus: number;
+    province: number;
+    city: number;
+    defaultAvatar: boolean;
+    backgroundImgId: BackgroundImgId;
+    backgroundUrl: string;
+    avatarImgId: BackgroundImgId;
+    birthday: number;
+    gender: number;
+    nickname: string;
+    signature: string;
+    authority: number;
+    followeds: number;
+    follows: number;
+    blacklist: boolean;
+    eventCount: number;
+    allSubscribedCount: number;
+    playlistBeSubscribedCount: number;
+    avatarImgId_str: string;
+    followTime?: any;
+    followMe: boolean;
+    artistIdentity: any[];
+    cCount: number;
+    inBlacklist: boolean;
+    sDJPCount: number;
+    playlistCount: number;
+    sCount: number;
+    newFollows: number;
+  }
+  
+  interface BackgroundImgId {
+    s: number;
+    e: number;
+    c: number[];
+  }
+  
+  interface Experts {
+  }
+  
+  interface PrivacyItemUnlimit {
+    area: boolean;
+    college: boolean;
+    gender: boolean;
+    age: boolean;
+    villageAge: boolean;
+  }
+  
+  interface UserPoint {
+    userId: number;
+    balance: number;
+    updateTime: number;
+    version: number;
+    status: number;
+    blockBalance: number;
+  }
+
   export type{
     userProfile,
     PlayList,
+    UserDetail
   }

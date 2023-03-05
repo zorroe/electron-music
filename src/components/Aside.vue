@@ -1,6 +1,6 @@
 <template>
     <el-scrollbar>
-        <div class="flex-row px-3">
+        <div class="flex-row px-3 py-1">
             <div v-for="(item,index) in asideItems" :key="index" class="aside-item">
                 {{ item.name }}
             </div>
@@ -34,13 +34,15 @@ import { MusicList} from '@icon-park/vue-next';
 import { watch } from 'vue';
 import { useUserInfoStore } from '@/store';
 import pinia from '@/store/store';
-import {myPlayLists,collectPlayLists,assignPlayList,asideItems,myMusicItems} from '@/api/useAside';
+import {myPlayLists,collectPlayLists,assignPlayList,clearPlayList,asideItems,myMusicItems} from '@/api/useAside';
 const userInfoStore = useUserInfoStore(pinia);
 
 // 监测pinia中的登陆状态，如果登录则获取歌单
 watch(() => userInfoStore.isLogin, (isLogin) => {
     if (isLogin) {
         assignPlayList()
+    }else{
+        clearPlayList()
     }
 })
 

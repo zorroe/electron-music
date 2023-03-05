@@ -13,15 +13,26 @@
             <div v-if="!isLogin" @click="routeTo('/login')">
                 未登录
             </div>
-            <img v-else :src="avatar" class="w-8 rounded-full mx-2 cursor-pointer">
-            <!-- 用户名 -->
-            <div class="text-white text-sm text-opacity-80 cursor-pointer hover:text-opacity-90">{{ userName }}</div>
+            <el-dropdown trigger="click" v-else>
+                <div class="flex justify-center items-center">
+                    <img :src="avatar" class="w-8 rounded-full mx-2 cursor-pointer">
+                    <div class="text-white text-sm text-opacity-80 cursor-pointer hover:text-opacity-90">{{ userName }}
+                    </div>
+                </div>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item @click="routeTo(`/user/${userId}`)">主页</el-dropdown-item>
+                        <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
             <icon-park :icon="Setting" :size="18" fill="#fbd9d9"></icon-park>
         </div>
         <div class="w-1/6 flex justify-end items-center">
             <icon-park :icon="Minus" :size="18" fill="#fbd9d9" class="cursor-pointer"></icon-park>
             <icon-park :icon="RectangleOne" :size="18" fill="#fbd9d9" class="cursor-pointer"></icon-park>
-            <icon-park :icon="Close" :size="18" fill="#fbd9d9" class="cursor-pointer text-opacity-80 hover:text-opacity-100"></icon-park>
+            <icon-park :icon="Close" :size="18" fill="#fbd9d9"
+                class="cursor-pointer text-opacity-80 hover:text-opacity-100"></icon-park>
         </div>
     </div>
 </template>
@@ -29,10 +40,11 @@
 <script setup lang="ts">
 import http from "@/utils/http";
 import pinia from "@/store/store";
-import {checkLoginStatus, routeTo} from "@/api/index";
-import {SoundWave,Search,Setting,Minus,RectangleOne,Close} from "@icon-park/vue-next";
+import { checkLoginStatus, routeTo } from "@/api/index";
+import { SoundWave, Search, Setting, Minus, RectangleOne, Close } from "@icon-park/vue-next";
 import { computed, onMounted, ref } from "vue";
 import { useUserInfoStore } from "@/store";
+import { userProfile } from "@/api/types";
 
 const userInfoStore = useUserInfoStore(pinia);
 
@@ -41,14 +53,23 @@ const isLogin = computed(() => userInfoStore.isLogin);
 const avatar = computed(() => userInfoStore.getUserInfo.avatarUrl);
 const defaultSearchKey = ref<string>("")
 const userName = computed(() => userInfoStore.getUserInfo.nickname);
+const userId = computed(() => userInfoStore.getUserInfo.userId);
 
-const getDefaultSearchKey = async() => {
+const getDefaultSearchKey = async () => {
     const res = await http.get("/search/default") as any;
-    const {data} = res;
+    const { data } = res;
     defaultSearchKey.value = data.showKeyword;
 }
 
-onMounted(()=>{
+const handleLogout = async () => {
+    await http.get("/logout");
+    userInfoStore.setIsLogin(false);
+    userInfoStore.setUserInfo({} as userProfile);
+    localStorage.removeItem("cookie");
+    routeTo("/login");
+}
+
+onMounted(() => {
     getDefaultSearchKey();
     checkLoginStatus()
 })
@@ -56,11 +77,11 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-.el-input{
+.el-input {
     width: 200px;
 }
 
-.i-icon{
+.i-icon {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
