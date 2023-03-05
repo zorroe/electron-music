@@ -2,8 +2,8 @@
     <div class="flex-row">
         <div class="flex">
             <img :src="playListDetail?.playlist.coverImgUrl" class="w-32 h-32 rounded">
-            <div class="flex-row ml-2 items-end">
-                <div class="flex items-center">
+            <div class="flex flex-col ml-4 justify-end">
+                <div class="flex items-center my-1">
                     <el-tag class="mx-1" type="danger" effect="plain">歌单</el-tag>
                     <div class="text-xl font-bold cursor-default">{{ playListDetail?.playlist.name }}</div>
                 </div>
@@ -21,10 +21,10 @@
                     <el-button :icon="Download" round class="mx-1">下载全部</el-button>
                 </div>
                 <div class="flex items-center my-1">
-                    <div class="text-sm mx-1">
+                    <div class="text-sm align-text-bottom mx-1">
                         歌曲：{{ playListDetail?.playlist.trackCount }}
                     </div>
-                    <div class="text-sm mx-1">
+                    <div class="text-sm align-text-bottom mx-1">
                         播放：{{ playListDetail?.playlist.playCount }}
                     </div>
                 </div>
