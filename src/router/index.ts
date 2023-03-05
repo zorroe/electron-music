@@ -22,7 +22,13 @@ const routes = [
     path: "/discover",
     name: "discover",
     component: () => import("@/components/Discover.vue"),
-  }
+  },
+  {
+    // 歌单详情
+    path: "/playlist/:id",
+    name: "playlist",
+    component: () => import("@/components/Playlist.vue"),
+  },
 ];
 export const router = createRouter({
   history: createWebHashHistory(),

@@ -9,9 +9,9 @@
           <Aside></Aside>
         </el-aside>
         <el-container>
-          <el-main>
-            <router-view></router-view>
-          </el-main>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -40,5 +40,10 @@ localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.t
 .el-footer{
   background-color: #def7ff;
   height: 50px;
+}
+
+.el-main{
+  height: 550px;
+  padding: 10px 0px 0px 10px;
 }
 </style>
