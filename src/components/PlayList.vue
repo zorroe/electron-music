@@ -30,11 +30,11 @@
                 </div>
             </div>
         </div>
-        <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="歌曲列表" name="songList">
                     <div>歌曲列表</div>
                 </el-tab-pane>
-                <el-tab-pane :label="`评论${commentCount}`" name="comment">
+                <el-tab-pane :label="`评论(${commentCount})`" name="comment">
                     <div>评论</div>
                 </el-tab-pane>
                 <el-tab-pane label="收藏者" name="collectUsers">

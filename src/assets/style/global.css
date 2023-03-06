@@ -163,3 +163,7 @@
 .el-button{
     color: var(--el-color-error)
 }
+
+.el-carousel__container {
+    height: 140px;
+}

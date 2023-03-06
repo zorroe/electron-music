@@ -44,6 +44,6 @@ localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.t
 
 .el-main{
   height: 550px;
-  padding: 10px 0px 0px 10px;
+  padding: 10px 10px 0px 10px;
 }
 </style>

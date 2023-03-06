@@ -7,12 +7,12 @@ axios.defaults.maxBodyLength = 5 * 1024 * 1024;
 axios.defaults.withCredentials = true;
 // 配置Contenttype
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
+// 配置自定义cookie
 
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
     config.params = {
       ...config.params,
-
       timestamp: Date.now(),
     };
     return config;
@@ -54,7 +54,7 @@ interface Http {
 }
 
 const http: Http = {
-  get(url, params) {
+  get(url, params: any) {
     return new Promise((resolve, reject) => {
       axios
         .get(url, { params })

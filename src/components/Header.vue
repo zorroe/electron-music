@@ -1,6 +1,6 @@
 <template>
     <div class="header-bar">
-        <div class="w-1/6 flex items-center justify-center">
+        <div @click="routeTo('/')" class="w-1/6 flex items-center justify-center">
             <icon-park :icon="SoundWave" fill="#fbd9d9"></icon-park>
             <div class="text-white text-opacity-80 cursor-default min-w-max">
                 网易云音乐

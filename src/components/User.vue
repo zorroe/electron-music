@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+            <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="创建的歌单" name="createdPlayList">
                     <div class="flex flex-wrap">
                         <div v-for="playList in myPlayLists" @click="routeTo(`/playlist/${playList.id}`)" class="flex-row mx-2 my-2 cursor-pointer">
