@@ -5,21 +5,42 @@
         <img :src="item.imageUrl">
       </el-carousel-item>
     </el-carousel>
-    <div @click="handleMoveTo('playList')" class="flex items-center cursor-pointer text-gray-600 hover:text-gray-900">
+    <div @click="handleMoveTo('playList')" class="flex items-center text-xl font-bold cursor-pointer text-gray-600 hover:text-gray-900">
       <div>
         推荐歌单
       </div>
       <icon-park :icon="Right"></icon-park>
     </div>
     <div class="flex flex-wrap justify-around">
-      <div v-for="item, index in playList.splice(0,5)" :key="index" class="mx-2 my-2 cursor-pointer ">
-        <div class="w-32 h-32">
-          <img :src="item.picUrl" class="w-full h-full object-cover rounded-lg">
-        </div>
+      <div v-for="item, index in playList.splice(0, 5)" :key="index" class="mx-2 my-2 cursor-pointer ">
+        <img :src="item.picUrl"
+          class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 w-32 h-32 rounded-lg">
         <div class="w-32 pic-item-text text-gray-700 hover:text-gray-900">
           {{ item.name }}
         </div>
       </div>
+    </div>
+
+    <div @click="handleMoveTo('rankList')" class="flex items-center text-xl font-bold cursor-pointer mt-4 text-gray-600 hover:text-gray-900">
+      <div>
+        排行榜
+      </div>
+      <icon-park :icon="Right"></icon-park>
+    </div>
+    <div class="flex flex-wrap justify-around">
+      
+    </div>
+    <div @click="handleMoveTo('singer')" class="flex items-center text-xl font-bold cursor-pointer mt-4 text-gray-600 hover:text-gray-900">
+      <div>
+        歌手
+      </div>
+      <icon-park :icon="Right"></icon-park>
+    </div>
+    <div @click="handleMoveTo('newsetMusic')" class="flex items-center text-xl font-bold cursor-pointer mt-4 text-gray-600 hover:text-gray-900">
+      <div>
+        最新音乐
+      </div>
+      <icon-park :icon="Right"></icon-park>
     </div>
   </div>
 </template>
@@ -27,7 +48,7 @@
 <script setup lang="ts">
 import { Banner, BannerRes } from '@/api/types';
 import { http } from '@/utils/http';
-import { onMounted, ref, defineEmits, computed, watch } from 'vue';
+import { onMounted, ref, defineEmits, computed, watch, onActivated } from 'vue';
 import { Right } from '@icon-park/vue-next';
 import { useUserInfoStore } from '@/store';
 import pinia from '@/store/store';
@@ -47,11 +68,16 @@ const getBanner = async () => {
 }
 
 const getRecommendPlayList = async () => {
-  const res:any = await http.get(`/recommend/resource`);
+  const res: any = await http.get(`/recommend/resource`);
   playList.value = res.recommend;
   console.log(res);
 }
 
+
+const getTopList = async () => {
+  const res: any = await http.get(`/toplist`);
+  console.log(res);
+}
 // 获取每日推荐歌单
 watch(isLogin, (isLogin) => {
   if (isLogin) {
@@ -67,6 +93,7 @@ const handleMoveTo = (tabName: string) => {
 onMounted(() => {
   setTimeout(() => {
     getBanner();
+    getRecommendPlayList();
   }, 0);
 })
 
@@ -91,12 +118,12 @@ onMounted(() => {
   height: min-content;
 }
 
-.pic-item-text{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  display:-webkit-box;
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2;
+.pic-item-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 14px;
 }
 </style>

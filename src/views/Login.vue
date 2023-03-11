@@ -11,7 +11,7 @@
 import { checkLoginStatus, routeTo } from '@/api';
 import router from '@/router';
 import { http } from '@/utils/http';
-import Cookies from 'js-cookie'
+
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const imgSrc = ref<string>("")
@@ -22,15 +22,7 @@ async function checkStatus(key: string) {
   return res
 }
 
-const setCookie = (cookie: string) => {
-  const arr = cookie.split(';')
-  arr.forEach(item => {
-    const [key, value] = item.split('=')
-    if ((key === 'MUSIC_U')) {
-      Cookies.set(key, value)
-    }
-  })
-}
+
 
 async function login() {
   const res = await http.get(`/login/qr/key`) as any
@@ -47,7 +39,6 @@ async function login() {
     if (statusRes.code === 803) {
       clearInterval(timer)
       localStorage.setItem("cookie", statusRes.cookie)
-      setCookie(statusRes.cookie)
       checkLoginStatus()
       router.push('/')
     }
