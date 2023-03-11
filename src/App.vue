@@ -9,9 +9,11 @@
           <Aside></Aside>
         </el-aside>
         <el-container>
-            <el-main>
-                <router-view></router-view>
-            </el-main>
+          <el-main>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -25,24 +27,20 @@
 import Header from '@/components/Header.vue';
 import Aside from '@/components/Aside.vue';
 
-localStorage.setItem("BASE_URL", "https://service-0g03ogpy-1254067389.gz.apigw.tencentcs.com/release/")
-
 </script>
 
 <style>
-
 .el-aside {
-  /* background-color: #f2f5f6; */
   border-right: 1px solid #e0e0e0;
   height: 600px;
 }
 
-.el-footer{
+.el-footer {
   background-color: #def7ff;
   height: 50px;
 }
 
-.el-main{
+.el-main {
   height: 550px;
   padding: 10px 10px 0px 10px;
 }

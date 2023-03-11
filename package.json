@@ -24,6 +24,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
@@ -45,6 +46,7 @@
     "axios": "^1.3.4",
     "dayjs": "^1.11.7",
     "element-plus": "^2.2.32",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "pinia": "^2.0.32",
     "vue-router": "^4.1.6"

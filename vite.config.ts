@@ -72,30 +72,38 @@ export default defineConfig(({ command }) => {
         nodeIntegration: true,
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver({
-          importStyle: false  // 不导入样式
-        })],
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: false, // 不导入样式
+          }),
+        ],
       }),
       Components({
-        resolvers: [ElementPlusResolver({
-          importStyle: false  // 不导入样式
-        })],
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: false, // 不导入样式
+          }),
+        ],
       }),
     ],
     resolve: {
       alias: {
-        '@': path.resolve('./src') // @代替src
-      }
+        "@": path.resolve("./src"), // @代替src
+      },
     },
-    server:
-      process.env.VSCODE_DEBUG &&
-      (() => {
-        const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);
-        return {
-          host: url.hostname,
-          port: +url.port,
-        };
-      })(),
+    server: {
+      host: "0.0.0.0",
+      port: 5173,
+      proxy: {
+        // https://cn.vitejs.dev/config/#server-proxy
+        "/api": {
+          target:
+            "https://service-0g03ogpy-1254067389.gz.apigw.tencentcs.com/release",
+          changeOrigin: true,
+          rewrite: (p) => p.replace(/^\/api/, ""),
+        },
+      },
+    },
     clearScreen: false,
   };
 });

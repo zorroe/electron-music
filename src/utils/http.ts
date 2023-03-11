@@ -1,13 +1,9 @@
 // http.ts
 import axios, { type AxiosRequestConfig } from "axios";
 
-axios.defaults.baseURL = localStorage.getItem("BASE_URL")?.toString();
-axios.defaults.timeout = 20 * 1000;
-axios.defaults.maxBodyLength = 5 * 1024 * 1024;
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "/api"
 // 配置Contenttype
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
-// 配置自定义cookie
 
 axios.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
@@ -53,8 +49,8 @@ interface Http {
   download(url: string): void;
 }
 
-const http: Http = {
-  get(url, params: any) {
+export const http: Http = {
+  get(url, params) {
     return new Promise((resolve, reject) => {
       axios
         .get(url, { params })

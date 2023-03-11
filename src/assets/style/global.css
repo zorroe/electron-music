@@ -167,3 +167,7 @@
 .el-carousel__container {
     height: 140px;
 }
+
+.el-carousel__item {
+    border-radius: 4px;
+}

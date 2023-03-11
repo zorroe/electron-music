@@ -11,17 +11,28 @@
       </div>
       <icon-park :icon="Right"></icon-park>
     </div>
+    <div class="flex flex-wrap justify-around">
+      <div v-for="item, index in playList.splice(0,5)" :key="index" class="mx-2 my-2 cursor-pointer ">
+        <div class="w-32 h-32">
+          <img :src="item.picUrl" class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="w-32 pic-item-text text-gray-700 hover:text-gray-900">
+          {{ item.name }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Banner, BannerRes } from '@/api/types';
-import http from '@/utils/http';
+import { http } from '@/utils/http';
 import { onMounted, ref, defineEmits, computed, watch } from 'vue';
 import { Right } from '@icon-park/vue-next';
 import { useUserInfoStore } from '@/store';
 import pinia from '@/store/store';
 
+const playList = ref<any[]>([]);
 const userInfoStore = useUserInfoStore(pinia);
 const banners = ref<Banner[]>();
 
@@ -35,6 +46,12 @@ const getBanner = async () => {
   banners.value = res.banners;
 }
 
+const getRecommendPlayList = async () => {
+  const res:any = await http.get(`/recommend/resource`);
+  playList.value = res.recommend;
+  console.log(res);
+}
+
 // 获取每日推荐歌单
 watch(isLogin, (isLogin) => {
   if (isLogin) {
@@ -42,11 +59,6 @@ watch(isLogin, (isLogin) => {
   }
 })
 
-const getRecommendPlayList = async () => {
-  // 配置get请求携带cookie
-  const res = await http.get("/recommend/resource");
-  console.log(res)
-}
 
 const handleMoveTo = (tabName: string) => {
   emit('moveTo', tabName)
@@ -77,5 +89,14 @@ onMounted(() => {
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
   height: min-content;
+}
+
+.pic-item-text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  font-size: 14px;
 }
 </style>
