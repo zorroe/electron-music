@@ -1,10 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
+
 const routes = [
   {
     path: "/",
     name: "home",
     component: () => import("@/views/Home.vue"),
+    meta: {
+      title: "首页",
+      KeepAlive: true,
+    },
   },
   {
     path: "/login",

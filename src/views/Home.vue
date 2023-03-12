@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="个性推荐" name="recommend">
                 <div>
-                    <Recommend @moveTo="moveTo"/>
+                    <Recommend @moveTo="moveTo" />
                 </div>
             </el-tab-pane>
             <el-tab-pane label="歌单" name="playList">
@@ -19,7 +18,6 @@
                 <div>最新音乐</div>
             </el-tab-pane>
         </el-tabs>
-    </div>
 </template>
 
 <script setup lang="ts">

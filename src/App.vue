@@ -10,9 +10,11 @@
         </el-aside>
         <el-container>
           <el-main>
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
+            <el-scrollbar>
+              <div class="px-4">
+                <router-view></router-view>
+              </div>
+            </el-scrollbar>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -42,6 +44,6 @@ import Aside from '@/components/Aside.vue';
 
 .el-main {
   height: 550px;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 0px 0px 0px;
 }
 </style>

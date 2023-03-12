@@ -6,7 +6,6 @@ import "@/samples/node-api";
 import router from "@/router/index";
 import pinia from "./store/store";
 import IconPark from '@/components/IconPark.vue'
-
 const app = createApp(App);
 
 app.use(router)
