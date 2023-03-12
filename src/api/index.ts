@@ -21,11 +21,11 @@ export const checkLoginStatus = async () => {
   const res = (await http.post("/login/status", { cookie: cookie })) as any;
   const { account, code, profile } = res.data;
   if (profile && account && code === 200) {
-    userInfoStore.setUserInfo(profile);
-    userInfoStore.setIsLogin(true);
     if (cookie) {
       setCookie(cookie);
     }
+    userInfoStore.setUserInfo(profile);
+    userInfoStore.setIsLogin(true);
     return true;
   } else {
     userInfoStore.setUserInfo({} as any);

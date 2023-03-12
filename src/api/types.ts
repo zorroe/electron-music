@@ -522,11 +522,110 @@ interface userProfile {
     bannerBizType: string;
   }
 
+  interface TopList {
+    code: number;
+    list: List[];
+    artistToplist: ArtistToplist;
+  }
+  
+  interface ArtistToplist {
+    coverUrl: string;
+    name: string;
+    upateFrequency: string;
+    position: number;
+    updateFrequency: string;
+  }
+  
+  interface List {
+    subscribers: any[];
+    subscribed?: any;
+    creator?: any;
+    artists?: any;
+    tracks?: any;
+    updateFrequency: string;
+    backgroundCoverId: number;
+    backgroundCoverUrl?: any;
+    titleImage: number;
+    titleImageUrl?: any;
+    englishTitle?: any;
+    opRecommend: boolean;
+    recommendInfo?: any;
+    socialPlaylistCover?: any;
+    subscribedCount: number;
+    adType: number;
+    trackNumberUpdateTime: number;
+    userId: number;
+    cloudTrackCount: number;
+    createTime: number;
+    highQuality: boolean;
+    updateTime: number;
+    specialType: number;
+    anonimous: boolean;
+    coverImgId: CoverImgId;
+    newImported: boolean;
+    trackUpdateTime: number;
+    trackCount: number;
+    coverImgUrl: string;
+    totalDuration: number;
+    commentThreadId: string;
+    privacy: number;
+    playCount: number;
+    description?: string;
+    status: number;
+    ordered: boolean;
+    tags: string[];
+    name: string;
+    id: number;
+    coverImgId_str: string;
+    ToplistType?: string;
+  }
+  
+  interface CoverImgId {
+    s: number;
+    e: number;
+    c: number[];
+  }
+
+  interface ArtistList {
+    artists: Artist[];
+    more: boolean;
+    code: number;
+  }
+  
+  interface Artist {
+    albumSize: number;
+    alias: string[];
+    briefDesc: string;
+    fansCount: number;
+    followed: boolean;
+    id: number;
+    img1v1Id: Img1v1Id;
+    img1v1Id_str: string;
+    img1v1Url: string;
+    musicSize: number;
+    name: string;
+    picId: Img1v1Id;
+    picId_str?: string;
+    picUrl: string;
+    topicPerson: number;
+    trans: string;
+    accountId?: number;
+    transNames?: string[];
+  }
+  
+  interface Img1v1Id {
+    s: number;
+    e: number;
+    c: number[];
+  }
+
   export type{
     userProfile,
     PlayList,
     UserDetail,
     PlayListDetail,
     Banner,
-    BannerRes
+    BannerRes,
+    TopList,
+    ArtistList,
   }
